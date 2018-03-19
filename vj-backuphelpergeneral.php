@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: 輔仁網: Backup Helper (General Site)
+Plugin Name: VJMedia: Backup Helper (General Site)
 Description: for General site use, without Monitor
 Version: 1.0
 Author: <a href="http://www.vjmedia.com.hk/">技術組</a>
@@ -20,6 +20,7 @@ function vjbh_do() {
 	file_put_contents($upload_dir."/vj-backuphelper.dat",current_time("YmdHis"));
 } */
 
+function vjbhg_dummy(){}
 
 function vjbh_everyminutes( $schedules ) {
 	$schedules['vjbh_everyminutes'] = ['interval'  => 60, 'display'   => 'Every Minutes'];
