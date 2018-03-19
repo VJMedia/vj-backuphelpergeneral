@@ -4,6 +4,7 @@ Plugin Name: VJMedia: Backup Helper (General Site)
 Description: for General site use, without Monitor
 Version: 1.0
 Author: <a href="http://www.vjmedia.com.hk/">技術組</a>
+GitHub Plugin URI: https://github.com/VJMedia/vj-backuphelpergeneral
 */
 
 /* register_activation_hook(__FILE__, 'vjbh_activation');
