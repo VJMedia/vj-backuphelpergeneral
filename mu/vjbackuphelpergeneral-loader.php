@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('VJBHG_PATH','vj-backuphelpergeneral/vj-backuphelpergeneral.php');
 
-if ( ! function_exists( 'vjbhg_dummy' )  && ! in_array(VJBHG_PATH,get_option('active_plugins') ) {
+if ( ! function_exists( 'vjbhg_dummy' )  && ! in_array(VJBHG_PATH,get_option('active_plugins') ) ) {
         require trailingslashit( WP_PLUGIN_DIR ) . VJBHG_PATH;
 }else{
 	$vjbhg_needdeactivate=true;
