@@ -23,6 +23,13 @@ function vjbh_do() {
 
 function vjbhg_dummy(){}
 
+function vjbhg_muselfdeactive(){
+	global $vjbhg_needdeactivate;
+	if($vjbhg_needdeactivate){
+		deactivate_plugins( VJBHG_PATH );
+	}
+} add_action('wp_loaded','vjbhg_muselfdeactive');
+
 function vjbh_everyminutes( $schedules ) {
 	$schedules['vjbh_everyminutes'] = ['interval'  => 60, 'display'   => 'Every Minutes'];
 	return $schedules;

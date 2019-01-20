@@ -13,6 +13,8 @@ define('VJBHG_PATH','vj-backuphelpergeneral/vj-backuphelpergeneral.php');
 
 if ( ! function_exists( 'vjbhg_dummy' ) ) {
         require trailingslashit( WP_PLUGIN_DIR ) . VJBHG_PATH;
+}else{
+	$vjbhg_needdeactivate=true;
 }
 
 function vjbhg_deactivate( $plugin, $network_wide ) {
