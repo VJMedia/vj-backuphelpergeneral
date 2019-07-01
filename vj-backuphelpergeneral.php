@@ -94,4 +94,31 @@ function vjbh_adminnotice() {
     <?php
 }} add_action( 'admin_notices', 'vjbh_adminnotice' );
 
+
+function vjbh_dashboardwidget2( $post, $callback_args ) {
+	if($diffpath=esc_attr(get_option('vjmedia_uploaddiffpath'))){
+		echo "<table style=\"width: 100%;\">";
+		echo "<tr><td colspan=\"2\">{$diffpath}</td></tr>";
+		echo "<tr><td><b>Diff</b></td><td>Filesize</td></tr>";
+		$d = dir($diffpath);
+		while (($file = $d->read()) !== false){
+			if(! in_array($file,[".",".."])){
+				echo "<tr><td>".$file."</td><td>";
+				$filesize=filesize($diffpath.$file);
+				$color=$filesize > 0 ? "red" : "green";
+				echo "<div style=\"width: 100%; background-color: {$color}; color: white;\">{$filesize}</div>";
+				echo "</td></tr>";
+			}
+		}
+		$d->close();
+		echo "</table>";
+	}
+}
+
+function vjbhg_adddashboardwidgets() {
+	if($diffpath=esc_attr(get_option('vjmedia_uploaddiffpath'))){
+		wp_add_dashboard_widget('vjbh_dashboardwidget2', 'VJMedia Diff Status', 'vjbh_dashboardwidget2');
+	}
+} add_action('wp_dashboard_setup', 'vjbhg_adddashboardwidgets' );
+
 ?>
