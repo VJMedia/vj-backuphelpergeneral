@@ -32,6 +32,7 @@ function vjbhg_muselfdeactive(){
 	}
 } add_action('wp_loaded','vjbhg_muselfdeactive');
 
+/*
 function vjbh_everyminutes( $schedules ) {
 	$schedules['vjbh_everyminutes'] = ['interval'  => 60, 'display'   => 'Every Minutes'];
 	return $schedules;
@@ -39,12 +40,21 @@ function vjbh_everyminutes( $schedules ) {
 
 if ( ! wp_next_scheduled( 'vjbh_everyminutes' ) ) {
 	wp_schedule_event( time(), 'vjbh_everyminutes', 'vjbh_everyminutes' );
+}*/
+
+function vjbh_everyhours( $schedules ) {
+	$schedules['vjbh_everyhours'] = ['interval'  => 3600, 'display'   => 'Every Hours'];
+	return $schedules;
+} add_filter( 'cron_schedules', 'vjbh_everyhours' );
+
+if ( ! wp_next_scheduled( 'vjbh_everyhours' ) ) {
+	wp_schedule_event( time(), 'vjbh_everyhours', 'vjbh_everyhours' );
 }
 
-function vjbh_everyminutes_func() {
+function vjbh_cron_func() {
 	$upload_dir=wp_upload_dir()["basedir"];
 	file_put_contents($upload_dir."/vj-backuphelper.dat",current_time("YmdHis"));
-} add_action( 'vjbh_everyminutes', 'vjbh_everyminutes_func' );
+} add_action( 'vjbh_everyhours', 'vjbh_cron_func' );
 
 function vjbh_helperfilestatus( $wp_admin_bar ) {
 	
