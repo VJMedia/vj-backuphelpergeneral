@@ -83,7 +83,8 @@ function vjbh_rebuild_callback() {
 	
 	vjbh_everyminutes_func();
 	
-	wp_schedule_event( time(), 'vjbh_everyminutes', 'vjbh_everyminutes' );
+	//wp_schedule_event( time(), 'vjbh_everyminutes', 'vjbh_everyminutes' );
+	wp_schedule_event( time(), 'vjbh_everyhours', 'vjbh_everyhours' );
 	
 	if(! parse_url($_GET["return"])["query"]){
 		$symbol="?";
