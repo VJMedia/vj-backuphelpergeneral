@@ -42,13 +42,13 @@ if ( ! wp_next_scheduled( 'vjbh_everyminutes' ) ) {
 	wp_schedule_event( time(), 'vjbh_everyminutes', 'vjbh_everyminutes' );
 }*/
 
-function vjbh_everyhours( $schedules ) {
+/*function vjbh_everyhours( $schedules ) {
 	$schedules['vjbh_everyhours'] = ['interval'  => 3600, 'display'   => 'Every Hours'];
 	return $schedules;
-} add_filter( 'cron_schedules', 'vjbh_everyhours' );
+} add_filter( 'cron_schedules', 'vjbh_everyhours' );*/
 
 if ( ! wp_next_scheduled( 'vjbh_everyhours' ) ) {
-	wp_schedule_event( time(), 'vjbh_everyhours', 'vjbh_everyhours' );
+	wp_schedule_event( time(), 'hourly', 'vjbh_everyhours' );
 }
 
 function vjbh_cron_func() {
@@ -84,7 +84,7 @@ function vjbh_rebuild_callback() {
 	vjbh_everyminutes_func();
 	
 	//wp_schedule_event( time(), 'vjbh_everyminutes', 'vjbh_everyminutes' );
-	wp_schedule_event( time(), 'vjbh_everyhours', 'vjbh_everyhours' );
+	wp_schedule_event( time(), 'hourly', 'vjbh_everyhours' );
 	
 	if(! parse_url($_GET["return"])["query"]){
 		$symbol="?";
